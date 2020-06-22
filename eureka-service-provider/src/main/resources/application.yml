@@ -1,0 +1,79 @@
+
+
+
+
+#应用名称及验证账号
+spring: 
+  application: 
+    name: provider
+    admin:
+      enabled: true
+  cloud:
+    config:
+      server:
+        git:
+          url:
+          search-paths: config
+
+#注册中心
+eureka: 
+  client:
+    #设置服务注册中心的URL
+    service-url:                      
+      defaultZone: http://root:root@eureka-7900:7900/eureka/
+  instance: 
+    hostname: localhost
+    instance-id: provider
+      
+    
+feign:
+  compression:
+    request:
+      mime-types:
+      - text/xml
+      min-request-size: 2048
+  #开启feignhystrix
+  hystrix:
+    enabled: true  
+   
+    
+
+  client: 
+    config:  
+      service-valuation: 
+        
+#        request-interceptors:
+#        - com.online.taxi.passenger.feign.interceptor.MyBasicAuthRequestInterceptor
+        connect-timeout: 5000
+        read-timeout: 5000
+        logger-level: basic
+        
+#service-sms: 
+#  ribbon: 
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+service-valuation: 
+  ribbon: 
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+ribbon:
+  eager-load:
+    enabled: true
+    clients:
+    - SERVICE-SMS
+
+
+#Admin监控
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      ##默认是never
+      show-details: ALWAYS
+      enabled: true
+          
+logging:
+  level:
+    org.springframework: DEBUG
+    com.online.taxi.passenger.feign.ServiceForecast: debug
