@@ -2,17 +2,18 @@ package com.zhangwei95;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
- *  eureka  service provider
+ *  eureka  service consumer
+ * @author zhangwei
  * @Describe 类描述
- * create by zhangwei
  * @date 2020/6/22
  */
 @SpringBootApplication
-public class ProviderApplication {
-
+@EnableFeignClients
+public class ConsumerApplication {
     public static void main(String[] args) {
-        SpringApplication.run(ProviderApplication.class,args);
+        SpringApplication.run(ConsumerApplication.class,args);
     }
 }

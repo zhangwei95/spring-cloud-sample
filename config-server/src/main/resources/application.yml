@@ -1,5 +1,5 @@
 server:
-  port: 16001
+  port: 9010
 spring:
   application:
     name: spring-cloud-config-server
@@ -7,7 +7,20 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/zhangwei95/spring-cloud-sample/     # 配置git仓库的地址
-          search-paths: config                        # git仓库地址下的相对地址，可以配置多个，用,分割。
+          uri: https://github.com/zhangwei95/spring-cloud-profile  # 配置git仓库的地址
           username:                                              # git仓库的账号
           password:                                              # git仓库的密码
+          default-label: master #配置文件分支
+          search-paths:         #config  #配置文件所在根目录
+eureka:
+  client:
+    #设置服务注册中心的URL
+    service-url:
+      defaultZone: http://root:root@eureka-server:18761/eureka/
+  instance:
+    #服务刷新时间配置，每隔这个时间会主动心跳一次
+    lease-renewal-interval-in-seconds: 1
+    #服务过期时间配置,超过这个时间没有接收到心跳EurekaServer就会将这个实例剔除
+    lease-expiration-duration-in-seconds: 1
+    hostname: localhost
+    instance-id: spring-cloud-config-server

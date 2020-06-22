@@ -14,6 +14,8 @@
         <module>eureka-service-provider</module>
         <module>quick-starter</module>
         <module>config-server</module>
+        <module>servicce-consumer</module>
+        <module>config-client</module>
     </modules>
 
     <name>spring-cloud-sample</name>
@@ -32,15 +34,18 @@
         <spring-cloud.version>Greenwich.SR2</spring-cloud.version>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.11</version>
-            <scope>test</scope>
-        </dependency>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Greenwich.SR2</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
-    </dependencies>
 
     <build>
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->

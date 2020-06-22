@@ -1,10 +1,10 @@
 #服务端口
 server:
-  port: 9001
+  port: 18080
 #应用名称及验证账号
 spring:
   application:
-    name: service-provider
+    name: zuul
 eureka:
   client:
     #设置服务注册中心的URL
@@ -17,4 +17,4 @@ eureka:
     #服务过期时间配置,超过这个时间没有接收到心跳EurekaServer就会将这个实例剔除
     lease-expiration-duration-in-seconds: 1
     hostname: localhost
-    instance-id: service-provider
+    instance-id: zuul
