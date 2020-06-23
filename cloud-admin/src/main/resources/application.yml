@@ -19,6 +19,10 @@ spring:
           starttls:
             enable: true
             required: true
+  boot:
+    admin:
+      ui:
+        title: 服务监控中心
 
 eureka:
   client:
@@ -32,3 +36,12 @@ eureka:
     lease-expiration-duration-in-seconds: 1
     hostname: localhost
     instance-id: cloud-admin
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always

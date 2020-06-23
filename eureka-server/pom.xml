@@ -53,6 +53,11 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
+        <!-- 服务监控开启refresh 端口 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
         <!-- 统一 依赖 -->
 <!--        <dependency>-->
 <!--            <groupId>com.zhangwei95</groupId>-->
