@@ -12,6 +12,7 @@ spring:
     host: smtp.qq.com
     username: 574150903
     password: qlsjkzuqsopzbbcj
+#    password: hjxbtzwevjawbdib
     properties:
       mail:
         smpt:
@@ -23,6 +24,11 @@ spring:
     admin:
       ui:
         title: 服务监控中心
+
+#收件邮箱
+spring.boot.admin.notify.mail.to: 574150903@qq.com
+# 发件邮箱
+spring.boot.admin.notify.mail.from: 574150903@qq.com
 
 eureka:
   client:
