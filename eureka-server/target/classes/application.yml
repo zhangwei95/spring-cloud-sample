@@ -4,19 +4,19 @@ server:
 #应用名称及验证账号
 spring: 
   application: 
-    name: eureka
+    name: eureka-server
   security:
     user:
       name: root
       password: root
 eureka:
   instance:
-    hostname: eureka
+    hostname: eureka-server
   client:
     fetch-registry: false
     register-with-eureka: false
     service-url:
-      defaultZone: http://root:${spring.security.user.password}@localhost:${server.port}/eureka/
+      defaultZone: http://root:${spring.security.user.password}@eureka-server:${server.port}/eureka/
   server:
     #关闭自我保护
     enable-self-preservation: false

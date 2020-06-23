@@ -6,11 +6,9 @@ spring:
     config:
       # 和下面的discovery互斥
       name: spring-cloud-config-client
-      uri:
-      - http://localhost:9010
-#      discovery:
-#        enabled: true
-#        service-id: config-server
+      uri: http://localhost:9010
+      #      discovery:
+      #        enabled: true
+      #        service-id: config-server
       profile: dev
       label: master
-
