@@ -18,3 +18,21 @@ eureka:
     lease-expiration-duration-in-seconds: 1
     hostname: localhost
     instance-id: service-provider
+  #zipkin
+  zipkin:
+    base-url: http://localhost:9411/
+    #采样比例1
+  sleuth:
+    sampler:
+      rate: 1
+
+management:
+  endpoints:
+    web:
+      exposure:
+        #yml加双引号，properties不用加
+        include: "*"
+    health:
+      ##默认是never
+      show-details: ALWAYS
+      enabled: true

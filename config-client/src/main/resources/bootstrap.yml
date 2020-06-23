@@ -1,14 +1,3 @@
 spring:
   application:
     name: spring-cloud-config-client
-  #先注释掉 配置中心
-  cloud:
-    config:
-      # 和下面的discovery互斥
-      name: spring-cloud-config-client
-      uri: http://localhost:9010
-      #      discovery:
-      #        enabled: true
-      #        service-id: config-server
-      profile: dev
-      label: master

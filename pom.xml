@@ -16,6 +16,7 @@
         <module>config-server</module>
         <module>servicce-consumer</module>
         <module>config-client</module>
+        <module>cloud-admin</module>
     </modules>
 
     <name>spring-cloud-sample</name>

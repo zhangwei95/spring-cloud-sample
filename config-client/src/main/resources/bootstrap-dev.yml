@@ -1,0 +1,21 @@
+spring:
+  cloud:
+    config:
+      # 和下面的discovery互斥
+      name: spring-cloud-config-client
+      uri: http://localhost:9010
+      #      discovery:
+      #        enabled: true
+      #        service-id: config-server
+      profile: dev
+      label: master
+management:
+  endpoints:
+    web:
+      exposure:
+        #yml加双引号，properties不用加
+        include: "*"
+    health:
+      ##默认是never
+      show-details: ALWAYS
+      enabled: true

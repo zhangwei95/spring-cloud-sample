@@ -23,5 +23,16 @@ eureka:
     #清理间隔时间
     eviction-interval-timer-in-ms: 5000
 
+management:
+  endpoints:
+    web:
+      exposure:
+        #yml加双引号，properties不用加
+        include: "*"
+    health:
+      ##默认是never
+      show-details: ALWAYS
+      enabled: true
+
 
 
