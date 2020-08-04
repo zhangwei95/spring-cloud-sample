@@ -1,0 +1,17 @@
+#服务端口
+server:
+  port: 8901
+#应用名称及验证账号
+spring:
+  application:
+    name: hystrix-turbine
+eureka:
+  client:
+    #设置服务注册中心的URL
+    service-url:
+      # host 配置 ip映射
+      defaultZone: http://root:root@eureka-server:18761/eureka/
+
+turbine:
+  app-config: service-provider,service-consumer
+  cluster-name-expression: "'default'"
