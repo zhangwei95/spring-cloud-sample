@@ -2,8 +2,8 @@ package com.zhangwei95.controller;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
-import com.sun.org.apache.bcel.internal.generic.ReturnaddressType;
 import com.zhangwei95.client.ProviderClient;
+import com.zhangwei95.exception.HystrixIgnoreException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -35,14 +35,23 @@ public class TestController {
     /**
      * restTemplate 熔断
      * @return
+     * commandProperties {@link com.netflix.hystrix.HystrixCommandProperties}
      */
     @GetMapping(value = "/test")
     @ApiOperation(value = "testApi", httpMethod = "GET", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    @HystrixCommand(fallbackMethod = "getMessageFail",
+    @HystrixCommand(fallbackMethod = "getMessageFail",ignoreExceptions = {HystrixIgnoreException.class},
     commandProperties = {
             @HystrixProperty(name = "fallback.enabled",value = "true")
     })
     public String getMessageRestTemplate(){
+
+//        try {
+//            int i = 1/0;
+//        } catch (Exception e){
+////            throw new BusinessException("熔断忽略的异常，继承HystrixBadRequestException");
+//            throw new HystrixIgnoreException("熔断忽略的异常，忽略属性设置");
+//        }
+
         String url = "http://service-provider/api/public/test";
         return restTemplate.getForEntity(url,String.class).getBody();
 //        return  providerClient.getMessage();
