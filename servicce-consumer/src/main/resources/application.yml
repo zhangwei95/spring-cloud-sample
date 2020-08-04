@@ -25,6 +25,15 @@ eureka:
     lease-expiration-duration-in-seconds: 1
     hostname: localhost
     instance-id: service-consumer
+#手写ribbon
+#service-provider:
+#  ribbon:
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+    # 自定义负载策略
+#    NFLoadBalancerRuleClassName: com.zhangwei95.config.MyRandomRule
+    #    eureka:
+    #      enable: false
+    #    listOfServers: localhost:8004,localhost:8005
 
 feign:
   #开启feignhystrix

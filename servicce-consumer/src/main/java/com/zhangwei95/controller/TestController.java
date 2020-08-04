@@ -8,8 +8,12 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -29,8 +33,14 @@ public class TestController {
     @Autowired
     private ProviderClient providerClient;
 
+
     @Autowired
+//    @Qualifier(value = "restTemplate")
     public RestTemplate restTemplate;
+
+
+    @Autowired
+    private LoadBalancerClient loadBalancerClient;
 
     /**
      * restTemplate 熔断
@@ -76,5 +86,17 @@ public class TestController {
         log.error("异常信息",throwable);
         //备用逻辑
         return "restTemplate熔断";
+    }
+
+
+    @GetMapping("/choseServiceName/{serviceName}")
+    public String choseServiceName(@PathVariable("serviceName") String serviceName) {
+//		String serviceName = "service-sms";
+
+//		String serviceName = "service-valuation";
+        ServiceInstance si = loadBalancerClient.choose(serviceName);
+        String info = serviceName+"节点信息：url:"+si.getHost()+",port:"+si.getPort();
+
+        return info;
     }
 }
