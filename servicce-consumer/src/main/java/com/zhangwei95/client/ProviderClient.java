@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @Describe 类描述
  * @date 2020/6/22
  */
-@FeignClient(name = "service-provider" , fallback = ProviderFallback.class)
+@FeignClient(name = "service-provider",fallback = ProviderFallback.class)
 public interface ProviderClient {
 
     /**
      *
      * @return
      */
-    @RequestMapping(value = "/api/test", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/public/test", method = RequestMethod.GET)
     public String getMessage();
 }

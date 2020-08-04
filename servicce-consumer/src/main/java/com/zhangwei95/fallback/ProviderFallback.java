@@ -13,6 +13,6 @@ public class ProviderFallback implements ProviderClient {
 
     @Override
     public String getMessage() {
-        return "getMessage  fallback";
+        return "feign hystrix failBack";
     }
 }
